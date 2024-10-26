@@ -1,7 +1,7 @@
 import { Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import CharacterList from "../CharacterList/CharacterList";
-import CharacterDetails from "../CharacterDetails/CharacterDetails";
+import CharacterDetails from "../CharacterDetails/CharacterDetails.jsx";
 import { Suspense } from "react";
 import Home from "../Home/Home";
 
