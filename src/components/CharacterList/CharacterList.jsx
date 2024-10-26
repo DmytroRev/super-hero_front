@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllCharacters } from "../../api";
 import { Link } from "react-router-dom";
 
-const CharacterList = () => {
+export default function CharacterList() {
   const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
@@ -40,6 +40,4 @@ const CharacterList = () => {
       )}
     </div>
   );
-};
-
-export default CharacterList;
+}

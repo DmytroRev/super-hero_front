@@ -6,7 +6,7 @@ import {
 } from "../../api";
 import { useEffect, useRef, useState } from "react";
 
-const CharacterDetails = () => {
+export default function CharacterDetails() {
   const { id } = useParams();
   const [character, setCharacter] = useState(null);
   const [error, setError] = useState(null);
@@ -116,6 +116,4 @@ const CharacterDetails = () => {
       </div>
     </div>
   );
-};
-
-export default CharacterDetails;
+}
