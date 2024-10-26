@@ -1,4 +1,4 @@
-import { Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Suspense } from "react";
 import "./App.css";
 import CharacterList from "../CharacterList/CharacterList";
@@ -9,13 +9,11 @@ export default function App() {
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/character" element={<CharacterList />} />
-            <Route path="/character/:id" element={<CharacterDetails />} />
-          </Routes>
-        </Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/character" element={<CharacterList />} />
+          <Route path="/character/:id" element={<CharacterDetails />} />
+        </Routes>
       </Suspense>
     </>
   );
