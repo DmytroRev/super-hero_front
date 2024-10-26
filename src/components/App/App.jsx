@@ -1,8 +1,8 @@
 import { Router, Route, Routes } from "react-router-dom";
+import { Suspense } from "react";
 import "./App.css";
 import CharacterList from "../CharacterList/CharacterList";
-import CharacterDetails from "../CharacterDetails/CharacterDetails.jsx";
-import { Suspense } from "react";
+import CharacterDetails from "../CharacterDetails/CharacterDedails";
 import Home from "../Home/Home";
 
 export default function App() {
