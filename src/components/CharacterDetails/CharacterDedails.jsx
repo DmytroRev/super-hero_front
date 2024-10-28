@@ -8,6 +8,7 @@ import {
 import { useEffect, useRef, useState } from 'react';
 import ChangeCharacterInfo from '../ChangeCharacterInfo/ChangeCharacterInfo';
 import AddCharacterImages from '../AddCharacterImages/AddCharacterImages';
+import DeleteCharacter from '../DeleteCharacter/DeleteCharacter';
 
 export default function CharacterDetails() {
   const { id } = useParams();
@@ -109,6 +110,9 @@ export default function CharacterDetails() {
         <Link to={backToPage.current}>Back</Link>
       </button>
       <div>
+        <div>
+          <DeleteCharacter />
+        </div>
         <img src={character.avatarUrl} alt={character.nickname} />
         <input type="file" accept="image/*" onChange={handleChangeAvatar} />
         <button onClick={handleSaveAvatar} disabled={isLoading}>

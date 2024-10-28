@@ -7,6 +7,7 @@ import Home from '../Home/Home';
 import CreateCharacter from '../CreateCharacter/CreateCharacter';
 import ChangeCharacterInfo from '../ChangeCharacterInfo/ChangeCharacterInfo';
 import AddCharacterImages from '../AddCharacterImages/AddCharacterImages';
+import DeleteCharacter from '../DeleteCharacter/DeleteCharacter';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
             path="/addCharacterImages/id"
             element={<AddCharacterImages />}
           />
+          <Route path="/deleteCharacter/:id" element={<DeleteCharacter />} />
         </Routes>
       </Suspense>
     </>

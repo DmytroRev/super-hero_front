@@ -37,18 +37,22 @@ const AddCharacterImages = ({ characterId, onImagesAdded }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imageToDelete, setImageToDelete] = useState(null);
 
-  const fetchCharacter = async id => {
-    if (!id) return;
+  useEffect(() => {
+    const fetchCharacter = async () => {
+      if (!characterId) return;
 
-    try {
-      const characterData = await getCharacterById(id);
-      if (characterData.imageUrl && addedImages.length === 0) {
-        setAddedImages(characterData.imageUrl);
+      try {
+        const characterData = await getCharacterById(characterId);
+        if (characterData.imageUrl && addedImages.length === 0) {
+          setAddedImages(characterData.imageUrl);
+        }
+      } catch (error) {
+        setError('Failed to fetch character data: ' + error.message);
       }
-    } catch (error) {
-      setError('Failed to fetch character data: ' + error.message);
-    }
-  };
+    };
+
+    fetchCharacter();
+  }, [characterId, addedImages.length]);
 
   const addImages = async () => {
     if (imageFiles) {
@@ -75,40 +79,27 @@ const AddCharacterImages = ({ characterId, onImagesAdded }) => {
     }
   };
 
-  // Пример, если server ожидает imageId
   const deleteImage = async () => {
     if (!imageToDelete) return;
 
     try {
-      console.log('Deleting image:', imageToDelete); // Логирование URL для удаления
+      const response = await removeCharacterImage(characterId, imageToDelete);
 
-      // Если нужно, получите imageId
-      const imageId = getIdFromUrl(imageToDelete);
-      console.log('Using image ID for deletion:', imageId);
-
-      const response = await removeCharacterImage(characterId, imageId);
-      console.log('Server response:', response); // Логируйте ответ сервера
-
-      // Обновите состояние
-      setAddedImages(prevImages =>
-        prevImages.filter(img => img !== imageToDelete)
-      );
+      // Убедитесь, что ваш сервер возвращает статус в ответе
+      if (response.status === 200) {
+        setAddedImages(prevImages =>
+          prevImages.filter(img => img !== imageToDelete)
+        );
+      } else {
+        setError('Не удалось удалить изображение на сервере.');
+      }
 
       setIsModalOpen(false);
       setImageToDelete(null);
     } catch (err) {
-      setError('Failed to delete image: ' + err.message);
-      console.error(err); // Логирование ошибки
+      setError('Ошибка при удалении изображения: ' + err.message);
     }
   };
-  const getIdFromUrl = url => {
-    // Здесь можно использовать регулярное выражение или метод строк для получения нужного ID
-    const parts = url.split('/');
-    return parts[parts.length - 1]; // например, если ID в конце URL
-  };
-  useEffect(() => {
-    fetchCharacter(characterId);
-  }, [characterId]);
 
   const handleFileChange = e => setImageFiles(e.target.files);
 

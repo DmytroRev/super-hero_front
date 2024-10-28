@@ -106,21 +106,18 @@ export const addCharacterImages = async (id, imageFiles) => {
     throw new Error(err);
   }
 };
-
-export const removeCharacterImage = async (id, imageId) => {
+export const removeCharacterImage = async (id, imageUrl) => {
   try {
     const response = await axios.delete(`${char}/${id}/image`, {
-      data: { imageId },
+      data: { imageUrl },
     });
     console.log('Ответ сервера на удаление изображения:', response.data);
-
     return response.data;
   } catch (err) {
     console.error('Failed to delete image:', err);
-    throw new Error(err);
+    throw new Error(err.response?.data?.error || err.message);
   }
 };
-
 export const deleteCharacter = async id => {
   try {
     const response = await axios.delete(`${char}/${id}`);
