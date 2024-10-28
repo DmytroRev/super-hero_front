@@ -1,0 +1,17 @@
+.container {
+    background-color: #E0E0E0;
+}
+
+.contentList {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.info {
+    display: flex;
+    gap: 5px;
+}

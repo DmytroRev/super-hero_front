@@ -27,7 +27,7 @@ export default function CharacterList() {
           <Link key={character._id} to={`/character/${character._id}`}>
             <div style={{ cursor: "pointer" }}>
               <img
-                src={character.avatar}
+                src={character.avatarUrl}
                 alt={character.nickname}
                 width="100"
               />
