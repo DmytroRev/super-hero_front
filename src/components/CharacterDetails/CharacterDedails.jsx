@@ -18,14 +18,14 @@ export default function CharacterDetails() {
   const [isLoading, setIsLoading] = useState(false);
   const backToPage = useRef(location.state ?? '/character');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [characterImages, setCharacterImages] = useState([]); // Состояние для изображений
+  // const [characterImages, setCharacterImages] = useState([]); // Состояние для изображений
 
   useEffect(() => {
     const fetchCharacter = async () => {
       try {
         const data = await getCharacterById(id);
         setCharacter(data);
-        setCharacterImages(data.image || []); // Устанавливаем начальные изображения
+        // setCharacterImages(data.image || []); // Устанавливаем начальные изображения
       } catch (err) {
         setError(err.message);
       }
@@ -103,10 +103,6 @@ export default function CharacterDetails() {
     }
   };
 
-  const handleImagesAdded = newImages => {
-    setCharacterImages(prevImages => [...prevImages, ...newImages]);
-  };
-
   return (
     <div>
       <button>
@@ -140,25 +136,7 @@ export default function CharacterDetails() {
       <p>Origin description: {character.origin_description}</p>
       <p>Superpowers: {character.superpowers}</p>
       <p>Catch phrase: {character.catch_phrase}</p>
-
-      <h3>Images:</h3>
-      <div>
-        {characterImages && characterImages.length > 0 ? (
-          characterImages.map((imgUrl, index) => (
-            <img
-              key={index}
-              src={imgUrl}
-              alt={`Image ${index + 1}`}
-              width="100"
-              style={{ margin: '5px' }}
-            />
-          ))
-        ) : (
-          <p>No images available</p>
-        )}
-      </div>
-
-      <AddCharacterImages characterId={id} onImagesAdded={handleImagesAdded} />
+      <AddCharacterImages characterId={id} />
     </div>
   );
 }

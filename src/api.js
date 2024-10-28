@@ -112,7 +112,9 @@ export const removeCharacterImage = async (id, imageId) => {
     const response = await axios.delete(`${char}/${id}/image`, {
       data: { imageId },
     });
-    return response.data.data;
+    console.log('Ответ сервера на удаление изображения:', response.data);
+
+    return response.data;
   } catch (err) {
     console.error('Failed to delete image:', err);
     throw new Error(err);

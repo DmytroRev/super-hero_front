@@ -1,0 +1,32 @@
+.imageContainer {
+    position: relative;
+    width: 100px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.imageContainer img {
+    width: 100%;
+    display: block;
+}
+
+.imageContainer .deleteButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    display: none;
+    /* Скрыта по умолчанию */
+}
+
+.imageContainer:hover .deletButton {
+    display: block;
+    /* Появляется при наведении */
+}
+
