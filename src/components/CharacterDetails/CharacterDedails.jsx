@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 import ChangeCharacterInfo from '../ChangeCharacterInfo/ChangeCharacterInfo';
 import AddCharacterImages from '../AddCharacterImages/AddCharacterImages';
 import DeleteCharacter from '../DeleteCharacter/DeleteCharacter';
+import { useNavigate } from 'react-router-dom';
 
 export default function CharacterDetails() {
   const { id } = useParams();
@@ -19,7 +20,7 @@ export default function CharacterDetails() {
   const [isLoading, setIsLoading] = useState(false);
   const backToPage = useRef(location.state ?? '/character');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [characterImages, setCharacterImages] = useState([]); // Состояние для изображений
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCharacter = async () => {
@@ -104,6 +105,11 @@ export default function CharacterDetails() {
     }
   };
 
+  const handleDeleteSuccess = () => {
+    // После успешного удаления перенаправляем на главную страницу
+    navigate('/');
+  };
+
   return (
     <div>
       <button>
@@ -111,7 +117,10 @@ export default function CharacterDetails() {
       </button>
       <div>
         <div>
-          <DeleteCharacter />
+          <DeleteCharacter
+            characterId={id}
+            onDeleteSuccess={handleDeleteSuccess}
+          />
         </div>
         <img src={character.avatarUrl} alt={character.nickname} />
         <input type="file" accept="image/*" onChange={handleChangeAvatar} />

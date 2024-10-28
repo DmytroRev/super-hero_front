@@ -38,18 +38,15 @@ export const DeleteCharacter = ({ characterId, onDeleteSuccess }) => {
 
   const handleDelete = async () => {
     try {
-      const response = await deleteCharacter(characterId);
-      if (response.status === 200) {
-        onDeleteSuccess(characterId);
-        closeModal();
-      } else {
-        setError('Not found character!');
+      await deleteCharacter(characterId); // Здесь мы просто ждем удаления
+      // Удаление прошло успешно
+      if (onDeleteSuccess) {
+        onDeleteSuccess(characterId); // Вызываем функцию для обработки успешного удаления
       }
     } catch (err) {
-      setError('Error delete character:', err);
+      setError('Error deleting character: ' + err.message);
     }
   };
-
   return (
     <div>
       <button onClick={openModal}>Delete character</button>
@@ -72,4 +69,5 @@ DeleteCharacter.propTypes = {
   characterId: PropTypes.string,
   onDeleteSuccess: PropTypes.func,
 };
+
 export default DeleteCharacter;

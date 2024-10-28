@@ -121,7 +121,10 @@ export const removeCharacterImage = async (id, imageUrl) => {
 export const deleteCharacter = async id => {
   try {
     const response = await axios.delete(`${char}/${id}`);
-    return response.data.data;
+    if (response.status === 204) {
+      // Успешное удаление
+      return true; // Можно вернуть true или просто ничего не возвращать
+    }
   } catch (err) {
     console.error('Failed to delete character:', err);
     throw new Error(err);
