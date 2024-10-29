@@ -24,14 +24,126 @@ width: 25px;
 height: 25px;
 }
 
+.modalContainer {
+    color: #e0e0e0;
+    position: relative;
+}
+
 .closeButton {
     border: none;
     background-color: transparent;
     cursor: pointer;
+    margin-left: 265px;
 }
 
+
 .closeIconModal {
-    
-    width: 25px;
-        height: 25px;
+    color: orangered;
+    width: 30px;
+        height: 30px;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.fileInput {
+    display: none;
+}
+
+.uploadLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    width: 160px;
+    height: 40px;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    border: 2px solid #8b0000;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.uploadLabel:hover {
+    background-color: #333333;
+}
+
+.uploadIcon {
+    color: #e0e0e0;
+}
+
+.avatarPreview {
+    position: absolute;
+    top: 0;
+    left: 170px;
+    margin-top: 10px;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    /* border-radius: 50%; */
+    border: 1px solid #8b0000;
+}
+
+.containerInputField {
+        position: relative;
+
+}
+
+.inputField {
+    width: 295px;
+    height: 30px;
+    padding-left: 15px;
+    border-radius: 5px;
+}
+
+.error {
+    position: absolute;
+        top: 28px;
+        /* left: 157px; */
+        right: 0;
+        color: orange;
+        white-space: nowrap;
+}
+
+.containerButtonModal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.buttonCreateModal {
+/* padding: 10px 15px; */
+    width: 140px;
+    height: 40px;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    border: 2px solid #8b0000;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buttonCreateModal:hover {
+        background-color: #333333;
+
+}
+
+.buttonCancelModal {
+    width: 100px;
+        height: 40px;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            border: 2px solid #8b0000;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+}
+
+.buttonCancelModal:hover {
+    background-color: #333333;
+
 }

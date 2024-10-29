@@ -19,10 +19,10 @@ const CustomModal = ({ isOpen, onClose, children, contentLabel }) => {
           marginRight: '-50%',
           transform: 'translate(-50%, -50%)',
           padding: '20px',
-          border: '1px solid #ccc',
-          backgroundColor: '#fff',
+          border: '1px solid #8b0000',
+          backgroundColor: '#1a1a1a',
           borderRadius: '8px',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)',
           zIndex: '1001',
         },
         overlay: {
@@ -32,9 +32,6 @@ const CustomModal = ({ isOpen, onClose, children, contentLabel }) => {
       }}
       overlayClassName={css.customModalOverlay}
     >
-      {/* <button className={css.closeButton} onClick={onClose}>
-        &times;
-      </button> */}
       {children}
     </Modal>
   );
