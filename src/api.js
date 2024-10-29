@@ -28,7 +28,7 @@ export const getCharacterById = async id => {
 export const createCharacter = async characterData => {
   try {
     const response = await axios.post(char, characterData);
-    console.log('Character creation response:', response.data); // Выводим ответ в консоль
+
     return response.data;
   } catch (err) {
     console.error('Failed to create character:', err);
@@ -54,9 +54,6 @@ export const updateCharacterAvatar = async (id, avatarFile) => {
     const response = await axios.patch(`${char}/${id}/avatar`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
-
-    console.log('Server response:', response); // Выводим весь ответ в консоль
-
     if (response.data && response.data.url) {
       return response.data;
     } else {
@@ -69,14 +66,13 @@ export const updateCharacterAvatar = async (id, avatarFile) => {
   }
 };
 
-// Убедитесь, что ваш метод deleteCharacter выглядит так
 export const deleteCharacterAvatar = async id => {
   try {
-    const response = await axios.delete(`${char}/${id}/avatar`); // Проверьте, правильно ли формируется URL
-    return response.data; // Здесь мы ожидаем, что ответ будет содержать нужные данные
+    const response = await axios.delete(`${char}/${id}/avatar`);
+    return response.data;
   } catch (err) {
     console.error('Failed to delete avatar:', err);
-    throw new Error(err.response?.data?.error || err.message); // Убедитесь, что вы обрабатываете сообщение об ошибке
+    throw new Error(err.response?.data?.error || err.message);
   }
 };
 
@@ -85,11 +81,10 @@ export const addCharacterImages = async (id, imageFiles) => {
     const formData = new FormData();
 
     imageFiles.forEach(file => {
-      console.log(file.name, file.size, file.type); // Логируем данные файла
+      console.log(file.name, file.size, file.type);
       formData.append('image', file);
     });
 
-    // Логирование формируемых данных для проверки
     for (let pair of formData.entries()) {
       console.log(`${pair[0]}, ${pair[1]}`);
     }
@@ -97,14 +92,8 @@ export const addCharacterImages = async (id, imageFiles) => {
     const response = await axios.patch(`${char}/${id}/image`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
-
-    // Логируем ответ сервера
-    console.log(response.data);
-
-    // Измените здесь, чтобы вернуть нужное значение из ответа
-    return response.data.urls || response.data.imageUrl; // Возвращаем массив URL или одиночный URL
+    return response.data.urls || response.data.imageUrl;
   } catch (err) {
-    console.error('Failed to add images:', err);
     throw new Error(err);
   }
 };
@@ -113,7 +102,6 @@ export const removeCharacterImage = async (id, imageUrl) => {
     const response = await axios.delete(`${char}/${id}/image`, {
       data: { imageUrl },
     });
-    console.log('Ответ сервера на удаление изображения:', response.data);
     return response.data;
   } catch (err) {
     console.error('Failed to delete image:', err);
@@ -122,17 +110,14 @@ export const removeCharacterImage = async (id, imageUrl) => {
 };
 export const deleteCharacter = async (id, avatarUrl = null) => {
   try {
-    // Если avatarUrl не равен null, сначала удаляем аватар
     if (avatarUrl) {
       await axios.delete(avatarUrl);
-      console.log('Avatar deleted successfully');
     }
 
     // Удаляем персонажа
     const response = await axios.delete(`${char}/${id}`);
 
     if (response.status === 204 || response.status === 200) {
-      console.log('Character deleted successfully');
       return true;
     }
 

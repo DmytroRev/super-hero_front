@@ -25,7 +25,6 @@ export default function CharacterDetails() {
   const [character, setCharacter] = useState(null);
   const [error, setError] = useState(null);
   const [newAvatar, setNewAvatar] = useState(null);
-  // const [photoPreview, setPhotoPreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const backToPage = useRef(location.state ?? '/');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -120,7 +119,6 @@ export default function CharacterDetails() {
 
   const handleImagesAdded = images => {
     console.log('Images added:', images);
-    // Дополнительная логика для обработки добавленных изображений
   };
 
   return (
