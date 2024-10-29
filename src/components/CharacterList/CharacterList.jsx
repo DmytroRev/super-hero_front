@@ -53,7 +53,7 @@ export default function CharacterList() {
         <h1>Superhero Marvel and DC</h1>
       </header>
       <div>
-        <CreateCharacter />
+        <CreateCharacter setCharacters={setCharacters} />
       </div>
       <div className={css.container}>
         {Array.isArray(characters) && characters.length > 0 ? (

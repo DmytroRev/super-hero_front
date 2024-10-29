@@ -15,6 +15,7 @@ import {
   IoCloudUploadOutline,
 } from 'react-icons/io5';
 import css from './CharacterDetails.module.css';
+import toast from 'react-hot-toast';
 
 export const defaultAvatarUrl =
   'https://res.cloudinary.com/drg797a6g/image/upload/v1730202328/zttvdayfjopc05w8buik.jpg';
@@ -40,7 +41,7 @@ export default function CharacterDetails() {
       }
     };
     fetchCharacter();
-  }, [id]);
+  }, [id, setCharacter]);
 
   const handleDeleteAvatar = async () => {
     try {
@@ -49,8 +50,10 @@ export default function CharacterDetails() {
         ...prevCharacter,
         avatarUrl: null,
       }));
+      toast.success('Avatar deleted successfully!');
     } catch (err) {
       setError(err.message);
+      toast.error('Failed to delete avatar.');
     }
   };
 
@@ -58,7 +61,6 @@ export default function CharacterDetails() {
     const file = e.target.files[0];
     if (file) {
       setNewAvatar(file);
-      // setPhotoPreview(URL.createObjectURL(file));
     }
   };
 
@@ -76,10 +78,12 @@ export default function CharacterDetails() {
           ...prevCharacter,
           avatarUrl: updatedAvatarUrl,
         }));
-        // setPhotoPreview(null);
+        setNewAvatar(null);
+        toast.success('Avatar updated successfully!');
       } catch (err) {
         console.error('Error updating avatar:', err.message || err);
         setError(err.message || 'Failed to update avatar.');
+        toast.error('Failed to update avatar.');
       } finally {
         setIsLoading(false);
       }
@@ -112,6 +116,11 @@ export default function CharacterDetails() {
 
   const handleDeleteSuccess = () => {
     navigate('/');
+  };
+
+  const handleImagesAdded = images => {
+    console.log('Images added:', images);
+    // Дополнительная логика для обработки добавленных изображений
   };
 
   return (
@@ -191,7 +200,7 @@ export default function CharacterDetails() {
         </div>
       </div>
 
-      <AddCharacterImages characterId={id} />
+      <AddCharacterImages characterId={id} onImagesAdded={handleImagesAdded} />
     </div>
   );
 }

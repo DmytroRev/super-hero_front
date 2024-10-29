@@ -13,6 +13,7 @@
     gap: 15px;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .images {
@@ -89,4 +90,16 @@ display: flex;
 .btn:hover {
 background-color: #333333;
     color: #fafafa;
+}
+
+.imagePreviewContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagePreview {
+    max-width: 80%;
+    max-height: 80%;
+    margin: 0 10px;
 }

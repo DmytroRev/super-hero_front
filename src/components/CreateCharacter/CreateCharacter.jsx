@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { createCharacter } from '../../api';
-import CustomModal from '../Modal/CustomModal';
+import CustomModal from '../CustomModal/CustomModal';
 import css from './CreateCharacter.module.css';
 import {
   IoCloseCircleOutline,
   IoCloudUploadOutline,
   IoCreateOutline,
 } from 'react-icons/io5';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const CreateCharacter = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,7 +40,6 @@ const CreateCharacter = () => {
           <IoCreateOutline className={css.iconCreate} />
         </div>
       </button>
-      <Toaster position="top-right" reverseOrder={false} />
       <CustomModal
         isOpen={isModalOpen}
         onRequestClose={closeModal}

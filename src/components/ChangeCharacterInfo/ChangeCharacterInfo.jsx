@@ -1,7 +1,7 @@
 import Modal from 'react-modal';
 import { Formik, Field, Form } from 'formik';
 import PropTypes from 'prop-types';
-import CustomModal from '../Modal/CustomModal';
+import CustomModal from '../CustomModal/CustomModal';
 import css from './ChangeCharacterInfo.module.css';
 
 Modal.setAppElement('#root');

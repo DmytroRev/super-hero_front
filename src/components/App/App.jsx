@@ -1,12 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 import './App.css';
-// import CharacterList from '../CharacterList/CharacterList';
-// import CharacterDetails from '../CharacterDetails/CharacterDedails';
-// import CreateCharacter from '../CreateCharacter/CreateCharacter';
-// import ChangeCharacterInfo from '../ChangeCharacterInfo/ChangeCharacterInfo';
-// import AddCharacterImages from '../AddCharacterImages/AddCharacterImages';
-// import DeleteCharacter from '../DeleteCharacter/DeleteCharacter';
+import { Toaster } from 'react-hot-toast';
 
 const CharacterList = lazy(() => import('../CharacterList/CharacterList'));
 const CharacterDetails = lazy(
@@ -28,9 +23,10 @@ const DeleteCharacter = lazy(
 export default function App() {
   return (
     <>
+      <Toaster position="top-right" reverseOrder={false} />
+
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          {/* <Route path="/" element={<HomePage />} /> */}
           <Route path="/" element={<CharacterList />} />
           <Route path="/createCharacter" element={<CreateCharacter />} />
           <Route path="/character/:id" element={<CharacterDetails />} />

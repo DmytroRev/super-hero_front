@@ -8,7 +8,8 @@ import PropTypes from 'prop-types';
 import css from './AddCharacterImages.module.css';
 import { AiTwotoneDelete } from 'react-icons/ai';
 import { IoCloudUploadOutline } from 'react-icons/io5';
-import CustomModal from '../Modal/CustomModal';
+import CustomModal from '../CustomModal/CustomModal';
+import toast from 'react-hot-toast';
 
 const AddCharacterImages = ({ characterId, onImagesAdded }) => {
   const [imageFiles, setImageFiles] = useState(null);
@@ -28,6 +29,7 @@ const AddCharacterImages = ({ characterId, onImagesAdded }) => {
         }
       } catch (error) {
         console.error(error);
+        toast.error('Failed to fetch character data.');
       }
     };
 
@@ -50,8 +52,10 @@ const AddCharacterImages = ({ characterId, onImagesAdded }) => {
         setAddedImages(prevImages => [...prevImages, ...newImages]);
         onImagesAdded(newImages);
         setImageFiles(null);
+        toast.success('Images added successfully!');
       } catch (err) {
         console.error(err);
+        toast.error('Failed to add images. Please try again.');
       } finally {
         setIsLoading(false);
       }
@@ -68,14 +72,17 @@ const AddCharacterImages = ({ characterId, onImagesAdded }) => {
         setAddedImages(prevImages =>
           prevImages.filter(img => img !== imageToDelete)
         );
+        toast.success('Image deleted successfully!');
       } else {
         console.error('Error');
+        toast.error('Failed to delete the image.');
       }
 
       setIsModalOpen(false);
       setImageToDelete(null);
     } catch (err) {
       console.error(err);
+      toast.error('Error deleting the image. Please try again.');
     }
   };
 

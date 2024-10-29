@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { deleteCharacter } from '../../api';
 import { AiTwotoneDelete } from 'react-icons/ai';
 import css from './DeleteCharacter.module.css';
-import CustomModal from '../Modal/CustomModal';
+import CustomModal from '../CustomModal/CustomModal';
 
 export const DeleteCharacter = ({ characterId, onDeleteSuccess }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

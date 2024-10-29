@@ -2,6 +2,8 @@ import Modal from 'react-modal';
 import PropTypes from 'prop-types';
 import css from './CustomModal.module.css';
 
+Modal.setAppElement('#root');
+
 const CustomModal = ({ isOpen, onClose, children, contentLabel }) => {
   if (!isOpen) return null;
 

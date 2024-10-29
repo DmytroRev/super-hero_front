@@ -99,6 +99,8 @@ height: 25px;
     gap: 30px;
 }
 
+
+
 .changeInfo {
     position: absolute;
     top: 10px;
@@ -108,8 +110,11 @@ height: 25px;
 .containerNameAndRealName {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     margin-top: 50px;
-    margin-right: 450px;
+    margin-right: 330px;
 margin-left: 100px;
+max-width: 600px;
+/* align-items: center; */
+text-align: center;
 }
