@@ -20,7 +20,6 @@ export default function CharacterList() {
       try {
         const data = await getAllCharacters(page, ITEMS_PER_PAGE);
 
-        // Если полученные данные пусты, значит больше нечего подгружать
         if (data.length < ITEMS_PER_PAGE) {
           setHasMore(false);
         }

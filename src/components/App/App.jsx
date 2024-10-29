@@ -1,13 +1,29 @@
 import { Route, Routes } from 'react-router-dom';
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import './App.css';
-import CharacterList from '../CharacterList/CharacterList';
-import CharacterDetails from '../CharacterDetails/CharacterDedails';
-import CreateCharacter from '../CreateCharacter/CreateCharacter';
-import ChangeCharacterInfo from '../ChangeCharacterInfo/ChangeCharacterInfo';
-import AddCharacterImages from '../AddCharacterImages/AddCharacterImages';
-import DeleteCharacter from '../DeleteCharacter/DeleteCharacter';
-// import HomePage from '../../pages/HomePage/HomePage';
+// import CharacterList from '../CharacterList/CharacterList';
+// import CharacterDetails from '../CharacterDetails/CharacterDedails';
+// import CreateCharacter from '../CreateCharacter/CreateCharacter';
+// import ChangeCharacterInfo from '../ChangeCharacterInfo/ChangeCharacterInfo';
+// import AddCharacterImages from '../AddCharacterImages/AddCharacterImages';
+// import DeleteCharacter from '../DeleteCharacter/DeleteCharacter';
+
+const CharacterList = lazy(() => import('../CharacterList/CharacterList'));
+const CharacterDetails = lazy(
+  () => import('../CharacterDetails/CharacterDedails')
+);
+const CreateCharacter = lazy(
+  () => import('../CreateCharacter/CreateCharacter')
+);
+const ChangeCharacterInfo = lazy(
+  () => import('../ChangeCharacterInfo/ChangeCharacterInfo')
+);
+const AddCharacterImages = lazy(
+  () => import('../AddCharacterImages/AddCharacterImages')
+);
+const DeleteCharacter = lazy(
+  () => import('../DeleteCharacter/DeleteCharacter')
+);
 
 export default function App() {
   return (

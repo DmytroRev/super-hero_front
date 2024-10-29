@@ -1,0 +1,39 @@
+.containerField{
+display: flex;
+flex-direction: column;
+row-gap: 15px;
+margin-top: 15px;
+}
+
+.inputField {
+    width: 295px;
+    height: 30px;
+    padding-left: 15px;
+    border-radius: 5px;
+    border: none;
+}
+
+.containerButton {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+        display: flex;
+            align-items: center;
+            max-width: 100%;
+            height: 40px;
+            background-color: #1a1a1a;
+            border: 1px solid #8b0000;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            color: #e0e0e0;
+            padding: 10px;
+}
+
+.btn:hover {
+    background-color: #333333;
+        color: #fafafa;
+}

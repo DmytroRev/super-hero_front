@@ -1,19 +1,10 @@
-import Modal from "react-modal";
-import { Formik, Field, Form } from "formik";
-import PropTypes from "prop-types";
+import Modal from 'react-modal';
+import { Formik, Field, Form } from 'formik';
+import PropTypes from 'prop-types';
+import CustomModal from '../Modal/CustomModal';
+import css from './ChangeCharacterInfo.module.css';
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
-
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 const ChangeCharacterInfo = ({ character, onSave, onClose }) => {
   if (!character) return null; // Добавлено, чтобы избежать ошибки PropTypes
@@ -25,44 +16,68 @@ const ChangeCharacterInfo = ({ character, onSave, onClose }) => {
     catch_phrase: character.catch_phrase,
   };
 
-  const handleSubmit = (values) => {
+  const handleSubmit = values => {
     onSave(values);
   };
 
   return (
-    <Modal isOpen={true} onRequestClose={onClose} style={customStyles}>
+    <CustomModal isOpen={true} onRequestClose={onClose}>
       <h2>Change character info</h2>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
         {() => (
-          <Form>
+          <Form className={css.containerField}>
             <div>
-              <label>Nickname:</label>
-              <Field type="text" name="nickname" />
+              <Field
+                type="text"
+                name="nickname"
+                placeholder="Nickname"
+                className={css.inputField}
+              />
             </div>
             <div>
-              <label>Real name:</label>
-              <Field type="text" name="real_name" />
+              <Field
+                type="text"
+                name="real_name"
+                placeholder="Real name"
+                className={css.inputField}
+              />
             </div>
             <div>
-              <label>Origin description:</label>
-              <Field type="text" name="origin_description" />
+              <Field
+                type="text"
+                name="origin_description"
+                placeholder="Origin description"
+                className={css.inputField}
+              />
             </div>
             <div>
-              <label>Superpowers:</label>
-              <Field type="text" name="superpowers" />
+              <Field
+                type="text"
+                name="superpowers"
+                placeholder="Superpowers"
+                className={css.inputField}
+              />
             </div>
             <div>
-              <label>Catch phrase:</label>
-              <Field type="text" name="catch_phrase" />
+              <Field
+                type="text"
+                name="catch_phrase"
+                placeholder="Catch phrase"
+                className={css.inputField}
+              />
             </div>
-            <button type="submit">Save</button>
-            <button type="button" onClick={onClose}>
-              Cancel
-            </button>
+            <div className={css.containerButton}>
+              <button type="submit" className={css.btn}>
+                Save
+              </button>
+              <button type="button" onClick={onClose} className={css.btn}>
+                Cancel
+              </button>
+            </div>
           </Form>
         )}
       </Formik>
-    </Modal>
+    </CustomModal>
   );
 };
 

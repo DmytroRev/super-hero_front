@@ -120,15 +120,25 @@ export const removeCharacterImage = async (id, imageUrl) => {
     throw new Error(err.response?.data?.error || err.message);
   }
 };
-export const deleteCharacter = async id => {
+export const deleteCharacter = async (id, avatarUrl = null) => {
   try {
-    const response = await axios.delete(`${char}/${id}`);
-    if (response.status === 204) {
-      // Успешное удаление
-      return true; // Можно вернуть true или просто ничего не возвращать
+    // Если avatarUrl не равен null, сначала удаляем аватар
+    if (avatarUrl) {
+      await axios.delete(avatarUrl);
+      console.log('Avatar deleted successfully');
     }
+
+    // Удаляем персонажа
+    const response = await axios.delete(`${char}/${id}`);
+
+    if (response.status === 204 || response.status === 200) {
+      console.log('Character deleted successfully');
+      return true;
+    }
+
+    throw new Error(`Unexpected status code: ${response.status}`);
   } catch (err) {
     console.error('Failed to delete character:', err);
-    throw new Error(err);
+    throw err;
   }
 };

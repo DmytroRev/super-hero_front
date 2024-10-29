@@ -17,15 +17,18 @@ export const DeleteCharacter = ({ characterId, onDeleteSuccess }) => {
   };
 
   const handleDelete = async () => {
+    console.log('Character ID:', characterId);
+
     try {
-      await deleteCharacter(characterId);
-      if (onDeleteSuccess) {
+      const result = await deleteCharacter(characterId);
+      if (result && onDeleteSuccess) {
         onDeleteSuccess(characterId);
       }
     } catch (err) {
-      console.error(err);
+      console.error('Error deleting character:', err);
     }
   };
+
   return (
     <div>
       <button onClick={openModal} className={css.buttonDelete}>

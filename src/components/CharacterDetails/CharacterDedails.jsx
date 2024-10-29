@@ -24,7 +24,7 @@ export default function CharacterDetails() {
   const [character, setCharacter] = useState(null);
   const [error, setError] = useState(null);
   const [newAvatar, setNewAvatar] = useState(null);
-  const [photoPreview, setPhotoPreview] = useState(null);
+  // const [photoPreview, setPhotoPreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const backToPage = useRef(location.state ?? '/');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -58,7 +58,7 @@ export default function CharacterDetails() {
     const file = e.target.files[0];
     if (file) {
       setNewAvatar(file);
-      setPhotoPreview(URL.createObjectURL(file));
+      // setPhotoPreview(URL.createObjectURL(file));
     }
   };
 
@@ -76,7 +76,7 @@ export default function CharacterDetails() {
           ...prevCharacter,
           avatarUrl: updatedAvatarUrl,
         }));
-        setPhotoPreview(null);
+        // setPhotoPreview(null);
       } catch (err) {
         console.error('Error updating avatar:', err.message || err);
         setError(err.message || 'Failed to update avatar.');
@@ -166,12 +166,6 @@ export default function CharacterDetails() {
             </div>
           </div>
         </div>
-        {/* {newAvatar && (
-            <div>
-              <h4>Предварительный просмотр нового аватара:</h4>
-              <img src={photoPreview} alt="New Avatar Preview" width="100" />
-            </div>
-          )} */}
         <div>
           <div className={css.changeInfo}>
             <button onClick={handleOpenModal} className={css.back}>
