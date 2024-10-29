@@ -1,0 +1,37 @@
+.headerList {
+    background-color: #232323;
+        border-bottom: 2px solid #BB0A21;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+}
+
+.container {
+    display: flex;
+    gap: 20px;  
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.containerCard {
+    border: 1px solid rgb(49, 46, 46);
+        border-radius: 8px;
+}
+
+.avatar {
+    height: 350px;
+    object-fit: contain;
+    background-color: #f0f0f0;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.nickname {
+    text-decoration: none;
+    color: silver;
+    padding: 10px 15px;
+    text-decoration: none;
+}

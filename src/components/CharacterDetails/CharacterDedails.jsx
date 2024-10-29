@@ -18,7 +18,7 @@ export default function CharacterDetails() {
   const [newAvatar, setNewAvatar] = useState(null);
   const [photoPreview, setPhotoPreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const backToPage = useRef(location.state ?? '/character');
+  const backToPage = useRef(location.state ?? '/');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -27,7 +27,6 @@ export default function CharacterDetails() {
       try {
         const data = await getCharacterById(id);
         setCharacter(data);
-        // setCharacterImages(data.image || []); // Устанавливаем начальные изображения
       } catch (err) {
         setError(err.message);
       }
@@ -37,10 +36,10 @@ export default function CharacterDetails() {
 
   const handleDeleteAvatar = async () => {
     try {
-      await deleteCharacterAvatar(id); // Изменено на deleteCharacterAvatar
+      await deleteCharacterAvatar(id);
       setCharacter(prevCharacter => ({
         ...prevCharacter,
-        avatarUrl: null, // Сбрасываем аватар после удаления
+        avatarUrl: null,
       }));
     } catch (err) {
       setError(err.message);
@@ -59,17 +58,15 @@ export default function CharacterDetails() {
     if (newAvatar) {
       try {
         setIsLoading(true);
-        const response = await updateCharacterAvatar(id, newAvatar); // Ожидаем ответа с URL
+        const response = await updateCharacterAvatar(id, newAvatar);
 
-        // Получаем URL нового аватара из ответа
         const updatedAvatarUrl = response.url;
 
-        // Выводим новый аватар в консоль
         console.log('New Avatar URL:', updatedAvatarUrl);
 
         setCharacter(prevCharacter => ({
           ...prevCharacter,
-          avatarUrl: updatedAvatarUrl, // Обновляем avatarUrl здесь
+          avatarUrl: updatedAvatarUrl,
         }));
         setPhotoPreview(null);
       } catch (err) {
@@ -94,19 +91,18 @@ export default function CharacterDetails() {
 
   const handleSaveCharacterInfo = async updatedCharacterInfo => {
     try {
-      await updateCharacter(id, updatedCharacterInfo); // Обновляем данные персонажа
+      await updateCharacter(id, updatedCharacterInfo);
       setCharacter(prevCharacter => ({
         ...prevCharacter,
-        ...updatedCharacterInfo, // Обновляем состояние с новыми данными
+        ...updatedCharacterInfo,
       }));
-      setIsModalOpen(false); // Закрываем модалку
+      setIsModalOpen(false);
     } catch (err) {
-      setError(err.message); // Обрабатываем ошибку
+      setError(err.message);
     }
   };
 
   const handleDeleteSuccess = () => {
-    // После успешного удаления перенаправляем на главную страницу
     navigate('/');
   };
 
