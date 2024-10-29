@@ -59,7 +59,11 @@ export default function CharacterList() {
       <div className={css.container}>
         {Array.isArray(characters) && characters.length > 0 ? (
           characters.map(character => (
-            <Link key={character._id} to={`/character/${character._id}`}>
+            <Link
+              key={character._id}
+              to={`/character/${character._id}`}
+              style={{ textDecoration: 'none' }}
+            >
               <div className={css.containerCard}>
                 <img
                   src={character.avatarUrl || defaultAvatarUrl}

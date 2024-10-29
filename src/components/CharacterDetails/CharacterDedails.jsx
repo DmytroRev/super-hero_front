@@ -10,6 +10,10 @@ import ChangeCharacterInfo from '../ChangeCharacterInfo/ChangeCharacterInfo';
 import AddCharacterImages from '../AddCharacterImages/AddCharacterImages';
 import DeleteCharacter from '../DeleteCharacter/DeleteCharacter';
 import { useNavigate } from 'react-router-dom';
+import {
+  IoArrowBackCircleOutline,
+  IoCloudUploadOutline,
+} from 'react-icons/io5';
 import css from './CharacterDetails.module.css';
 
 export const defaultAvatarUrl =
@@ -112,46 +116,87 @@ export default function CharacterDetails() {
 
   return (
     <div>
-      <button>
-        <Link to={backToPage.current}>Back</Link>
-      </button>
-      <div>
-        <div>
+      <div className={css.containerHeader}>
+        <button className={css.back}>
+          <Link
+            to={backToPage.current}
+            style={{ textDecoration: 'none', color: '#e0e0e0' }}
+            className={css.link}
+          >
+            <IoArrowBackCircleOutline className={css.iconBack} /> Back
+          </Link>
+        </button>
+        <div className={css.delete}>
           <DeleteCharacter
             characterId={id}
             onDeleteSuccess={handleDeleteSuccess}
           />
         </div>
-        <img
-          src={character.avatarUrl || defaultAvatarUrl}
-          alt={character.nickname || 'Default Avatar'}
-        />
-        <input type="file" accept="image/*" onChange={handleChangeAvatar} />
-        <button onClick={handleSaveAvatar} disabled={isLoading}>
-          {isLoading ? 'Saving...' : 'Save'}
-        </button>
-        <button onClick={handleDeleteAvatar}>Delete</button>
-        {/* {newAvatar && (
-          <div>
-            <h4>Предварительный просмотр нового аватара:</h4>
-            <img src={photoPreview} alt="New Avatar Preview" width="100" />
-          </div>
-        )} */}
       </div>
-      <button onClick={handleOpenModal}>Change Info Character</button>
-      {isModalOpen && (
-        <ChangeCharacterInfo
-          character={character}
-          onSave={handleSaveCharacterInfo}
-          onClose={handleCloseModal}
-        />
-      )}
+      <div className={css.containerAvatar}>
+        <div className={css.containerAvatarAndInput}>
+          <img
+            src={character.avatarUrl || defaultAvatarUrl}
+            alt={character.nickname || 'Default Avatar'}
+            className={css.avatar}
+          />
+          <div className={css.uploadContainer}>
+            <input
+              type="file"
+              accept="image/*"
+              id="avatar"
+              onChange={handleChangeAvatar}
+              className={css.fileInput}
+            />
+            <label htmlFor="avatar" className={css.uploadLabel}>
+              <IoCloudUploadOutline size={24} className={css.uploadIcon} />
+              <span>Upload Avatar</span>
+            </label>
+            <div className={css.containerWithButtonSaveAndDelete}>
+              <button
+                onClick={handleSaveAvatar}
+                disabled={isLoading}
+                className={css.back}
+              >
+                {isLoading ? 'Saving...' : 'Save'}
+              </button>
+              <button onClick={handleDeleteAvatar} className={css.back}>
+                Delete avatar
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* {newAvatar && (
+            <div>
+              <h4>Предварительный просмотр нового аватара:</h4>
+              <img src={photoPreview} alt="New Avatar Preview" width="100" />
+            </div>
+          )} */}
+        <div>
+          <div className={css.changeInfo}>
+            <button onClick={handleOpenModal} className={css.back}>
+              Change Info Character
+            </button>
+          </div>
+          {isModalOpen && (
+            <ChangeCharacterInfo
+              character={character}
+              onSave={handleSaveCharacterInfo}
+              onClose={handleCloseModal}
+            />
+          )}
+          <div className={css.containerNameAndRealName}>
+            <h2>{character.nickname}</h2>
+            <p>Real name: {character.real_name}</p>
+            <p className={css.paragraphOrigin}>
+              Origin description: {character.origin_description}
+            </p>
+            <p>Superpowers: {character.superpowers}</p>
+            <p>Catch phrase: {character.catch_phrase}</p>
+          </div>
+        </div>
+      </div>
 
-      <h1>{character.nickname}</h1>
-      <p>Real name: {character.real_name}</p>
-      <p>Origin description: {character.origin_description}</p>
-      <p>Superpowers: {character.superpowers}</p>
-      <p>Catch phrase: {character.catch_phrase}</p>
       <AddCharacterImages characterId={id} />
     </div>
   );

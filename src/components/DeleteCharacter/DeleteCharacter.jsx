@@ -1,32 +1,12 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import Modal from 'react-modal';
-import { deleteCharacter } from '../../api'; // Импортируйте ваш API метод для удаления персонажа
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    padding: '20px',
-    border: '1px solid #ccc',
-    backgroundColor: '#fff',
-    borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-  },
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-  },
-};
-
-Modal.setAppElement('#root');
+import { deleteCharacter } from '../../api';
+import { AiTwotoneDelete } from 'react-icons/ai';
+import css from './DeleteCharacter.module.css';
+import CustomModal from '../Modal/CustomModal';
 
 export const DeleteCharacter = ({ characterId, onDeleteSuccess }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [error, setError] = useState(null);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -38,29 +18,37 @@ export const DeleteCharacter = ({ characterId, onDeleteSuccess }) => {
 
   const handleDelete = async () => {
     try {
-      await deleteCharacter(characterId); // Здесь мы просто ждем удаления
-      // Удаление прошло успешно
+      await deleteCharacter(characterId);
       if (onDeleteSuccess) {
-        onDeleteSuccess(characterId); // Вызываем функцию для обработки успешного удаления
+        onDeleteSuccess(characterId);
       }
     } catch (err) {
-      setError('Error deleting character: ' + err.message);
+      console.error(err);
     }
   };
   return (
     <div>
-      <button onClick={openModal}>Delete character</button>
-      <Modal
-        style={customStyles}
+      <button onClick={openModal} className={css.buttonDelete}>
+        <AiTwotoneDelete
+          style={{ color: 'white' }}
+          className={css.deleteIcon}
+        />
+      </button>
+      <CustomModal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         contentLabel="Confirm Deletion"
       >
         <h3>Are you sure you want to delete this character?</h3>
-        <button onClick={handleDelete}>Yes, delete</button>
-        <button onClick={closeModal}>Cancel</button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-      </Modal>
+        <div className={css.containerButtonModal}>
+          <button onClick={handleDelete} className={css.btn}>
+            Yes, delete
+          </button>
+          <button onClick={closeModal} className={css.btn}>
+            Cancel
+          </button>
+        </div>
+      </CustomModal>
     </div>
   );
 };

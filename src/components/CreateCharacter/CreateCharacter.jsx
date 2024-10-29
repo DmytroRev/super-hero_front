@@ -293,7 +293,6 @@ const CreateCharacter = () => {
             {({ setFieldValue }) => (
               <Form className={css.formContainer}>
                 <div className={css.uploadContainer}>
-                  {/* <label>Avatar</label> */}
                   <input
                     name="avatar"
                     type="file"
@@ -327,7 +326,6 @@ const CreateCharacter = () => {
                 </div>
 
                 <div className={css.containerInputField}>
-                  {/* <label htmlFor="nickname">Nickname</label> */}
                   <Field
                     type="text"
                     name="nickname"
@@ -342,7 +340,6 @@ const CreateCharacter = () => {
                 </div>
 
                 <div className={css.containerInputField}>
-                  {/* <label htmlFor="real_name">Real Name</label> */}
                   <Field
                     type="text"
                     name="real_name"
@@ -357,7 +354,6 @@ const CreateCharacter = () => {
                 </div>
 
                 <div className={css.containerInputField}>
-                  {/* <label htmlFor="origin_description">Origin Description</label> */}
                   <Field
                     type="text"
                     name="origin_description"
@@ -372,7 +368,6 @@ const CreateCharacter = () => {
                 </div>
 
                 <div className={css.containerInputField}>
-                  {/* <label htmlFor="superpowers">Superpowers</label> */}
                   <Field
                     type="text"
                     name="superpowers"
@@ -387,7 +382,6 @@ const CreateCharacter = () => {
                 </div>
 
                 <div className={css.containerInputField}>
-                  {/* <label htmlFor="catch_phrase">Catch Phrase</label> */}
                   <Field
                     type="text"
                     name="catch_phrase"

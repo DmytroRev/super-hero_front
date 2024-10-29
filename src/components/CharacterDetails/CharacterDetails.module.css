@@ -1,0 +1,115 @@
+.containerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+            border-bottom: 0.5px solid #BB0A21;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+                padding: 5px 10px;
+                    background-color: #232323;
+}
+
+.back {
+    display: flex;
+    align-items: center;
+max-width: 100%;
+    height: 40px;
+    background-color: #1a1a1a;
+    border: 1px solid #8b0000;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    color: #e0e0e0;
+    padding: 10px;
+}
+
+.back:hover {
+    background-color: #333333;
+    color: #fafafa;
+}
+
+.link  {
+display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.iconBack {
+    display: flex;
+width: 25px;
+height: 25px;
+}
+
+
+
+.containerAvatar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.containerAvatarAndInput {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar {
+    max-width: 350px;
+    height: 450px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+
+.fileInput {
+    display: none;
+}
+
+.uploadLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    width: 160px;
+    height: 40px;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    border: 2px solid #8b0000;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 15px;
+}
+
+.uploadLabel:hover {
+    background-color: #333333;
+}
+
+.uploadIcon {
+    color: #e0e0e0;
+}
+
+.containerWithButtonSaveAndDelete {
+    display: flex;
+    gap: 30px;
+}
+
+.changeInfo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.containerNameAndRealName {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 50px;
+    margin-right: 450px;
+margin-left: 100px;
+}
