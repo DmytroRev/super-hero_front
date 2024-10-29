@@ -207,6 +207,7 @@ import {
   IoCloudUploadOutline,
   IoCreateOutline,
 } from 'react-icons/io5';
+import toast, { Toaster } from 'react-hot-toast';
 
 const CreateCharacter = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -237,7 +238,7 @@ const CreateCharacter = () => {
           <IoCreateOutline className={css.iconCreate} />
         </div>
       </button>
-
+      <Toaster position="top-right" reverseOrder={false} />
       <CustomModal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
@@ -278,8 +279,8 @@ const CreateCharacter = () => {
 
                 const result = await createCharacter(formData);
                 console.log('Character created result:', result);
+                toast.success('Character created successfully!');
 
-                alert('Character created successfully!');
                 closeModal();
               } catch (error) {
                 console.error('Error creating character:', error);

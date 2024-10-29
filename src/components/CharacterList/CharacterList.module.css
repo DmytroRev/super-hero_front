@@ -9,6 +9,7 @@
 
 .container {
     display: flex;
+    justify-content: center;
     gap: 20px;  
     padding-left: 20px;
     padding-right: 20px;
@@ -22,8 +23,9 @@
 }
 
 .avatar {
-    height: 350px;
-    object-fit: contain;
+    height: 400px;
+    width: 250px;
+    object-fit: cover;
     background-color: #f0f0f0;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
@@ -34,4 +36,33 @@
     color: silver;
     padding: 10px 15px;
     text-decoration: none;
+}
+
+.loadMoreContainer {
+    display: flex;
+        justify-content: center;
+    margin-top: 30px;
+}
+
+.loadMoreButton {
+    display: flex;
+        justify-content: center;
+        align-items: center;
+            width: 110px;
+                height: 40px;
+                background-color: #1a1a1a;
+                color: #e0e0e0;
+                border: 2px solid #8b0000;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+}
+
+.loadMoreButton:hover {
+    background-color: #333333;
+}
+
+.loadMoreIcon {
+    width: 25px;
+    height: 25px;
 }

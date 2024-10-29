@@ -3,9 +3,11 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://super-hero-backend.onrender.com';
 const char = '/characters';
 
-export const getAllCharacters = async () => {
+export const getAllCharacters = async (page = 1, limit = 5) => {
   try {
-    const response = await axios.get(`${char}`);
+    const response = await axios.get(`${char}`, {
+      params: { page, limit },
+    });
     return response.data.data;
   } catch (err) {
     console.error('Not found:', err);

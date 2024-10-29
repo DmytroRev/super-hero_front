@@ -10,6 +10,10 @@ import ChangeCharacterInfo from '../ChangeCharacterInfo/ChangeCharacterInfo';
 import AddCharacterImages from '../AddCharacterImages/AddCharacterImages';
 import DeleteCharacter from '../DeleteCharacter/DeleteCharacter';
 import { useNavigate } from 'react-router-dom';
+import css from './CharacterDetails.module.css';
+
+export const defaultAvatarUrl =
+  'https://res.cloudinary.com/drg797a6g/image/upload/v1730202328/zttvdayfjopc05w8buik.jpg';
 
 export default function CharacterDetails() {
   const { id } = useParams();
@@ -118,18 +122,21 @@ export default function CharacterDetails() {
             onDeleteSuccess={handleDeleteSuccess}
           />
         </div>
-        <img src={character.avatarUrl} alt={character.nickname} />
+        <img
+          src={character.avatarUrl || defaultAvatarUrl}
+          alt={character.nickname || 'Default Avatar'}
+        />
         <input type="file" accept="image/*" onChange={handleChangeAvatar} />
         <button onClick={handleSaveAvatar} disabled={isLoading}>
           {isLoading ? 'Saving...' : 'Save'}
         </button>
         <button onClick={handleDeleteAvatar}>Delete</button>
-        {newAvatar && (
+        {/* {newAvatar && (
           <div>
             <h4>Предварительный просмотр нового аватара:</h4>
             <img src={photoPreview} alt="New Avatar Preview" width="100" />
           </div>
-        )}
+        )} */}
       </div>
       <button onClick={handleOpenModal}>Change Info Character</button>
       {isModalOpen && (
